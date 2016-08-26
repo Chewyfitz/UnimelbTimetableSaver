@@ -1,0 +1,19 @@
+var num_Of_Classes = document.querySelectorAll("span.cssTtableClsSlotWhat").length;
+
+var holdarray = ["Subject, Description, Start Time, End Time, Location"];
+
+for(i = 0; i < num_Of_Classes; i++){ 
+holdarray.push(
+	document.querySelectorAll("div.cssTtableHeaderPanel")[i].innerHTML.trim() + "," +
+	document.querySelectorAll("span.cssTtableClsSlotWhat")[i].innerHTML.trim() + "," +
+	document.querySelectorAll("span.cssTtableClsSlotWhen")[i].innerHTML.trim().replace("-",",").replace(", ","") + "," +
+	document.querySelectorAll("span.cssTtableClsSlotWhere")[i].innerHTML.trim()
+);
+}
+
+var save = document.createElement('a');
+save.href = 'data:application/xml;charset=utf-8,' + holdarray.join("%0A");
+save.download = "timetable.csv";
+save.innerHTML = "Save";
+document.body.appendChild(save);
+void(0);
